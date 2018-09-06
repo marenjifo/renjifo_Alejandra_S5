@@ -1,8 +1,13 @@
 package com.example.mariarenjifo.renjifo_alejandra_s5;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,36 +56,40 @@ public class NoticiaAdapter extends BaseAdapter {
         View renglon= inflater.inflate(R.layout.renglon, null, false);
         TextView item_nombre= renglon.findViewById(R.id.item_nombre);
         TextView item_telefono= renglon.findViewById(R.id.item_telefono);
-        //ImageView item_genero=renglon.findViewById(R.id.item_genero);
-        TextView item_genero= renglon.findViewById(R.id.item_genero);
+        ImageView item_genero=renglon.findViewById(R.id.item_genero);
+
         ImageButton item_actionCall=renglon.findViewById(R.id.item_actionCall);
         Button item_actionRemove=renglon.findViewById(R.id.item_actionRemove);
 
         item_nombre.setText(noticias.get(position).getNombre());
         item_telefono.setText(noticias.get(position).getTelefono());
-       // if(img){
-         //   item_genero.setImageResource(R.drawable.femenine);
-        //}else {
-        //    item_genero.setImageResource(R.drawable.male);
-       // }
 
-        item_genero.setText(noticias.get(position).getGenero());
+        String genero= noticias.get(position).getGenero();
+        final String telefono= noticias.get(position).getTelefono();
+
+        if(genero.equals("Hombre")){
+            item_genero.setImageResource(R.drawable.male);
+        }
+
+        if(genero.equals("Mujer")){
+            item_genero.setImageResource(R.drawable.femenine);
+        }
+
 
 
         item_actionCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(activity, noticias.get(position).getTitulo(), Toast.LENGTH_SHORT).show();
-                //noticias.remove(position);
-                //notifyDataSetChanged();
-                //Intent intent = new Intent(activity,NoticiaView.class);
-                //activity.startActivity(intent);
-
-                String number = "7777777777";
-                Uri call = Uri.parse("tel:" + number);
-                Intent surf = new Intent(Intent.ACTION_CALL, call);
-
-                //activity.startActivity(surf);
+                final int Request_phone_call = 1;
+                Intent call = new Intent(Intent.ACTION_CALL);
+                call.setData(Uri.parse("tel: "+telefono));
+                if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                    if(ContextCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CALL_PHONE},Request_phone_call);
+                    }else {
+                        activity.startActivity(call);
+                    }
+                }
             }
         });
 
