@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:orientation="vertical"
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+
+
+        <LinearLayout
+            android:layout_width="220dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del contacto"
+                android:background="@drawable/bordes"
+                android:padding="5sp"
+                android:textColor="#b9ffffff"
+                android:layout_marginTop="20dp"
+                android:textColorHint="#b9ffffff"
+                android:id="@+id/et_nombre"/>
+
+            <EditText
+                android:id="@+id/et_telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bordes"
+                android:hint="Telefono"
+                android:textColor="#b9ffffff"
+                android:padding="5sp"
+                android:textColorHint="#b9ffffff" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="F"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:textOff="M"
+                android:showText="true"
+                android:layout_marginStart="80dp"
+                android:id="@+id/sw_genero"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_generar"
+            android:layout_width="110dp"
+            android:layout_height="125dp"
+            android:background="@drawable/bordes"
+            android:textColor="#00b050"
+            android:textAlignment="gravity"
+            android:textSize="60dp"
+            android:text="+"
+            android:padding="0dp"
+             />
+
+    </LinearLayout>
+
+
+
+
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/lv_noticias">
+
+
+
+    </ListView>
+
+
+</LinearLayout>
